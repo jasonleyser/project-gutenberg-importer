@@ -1,17 +1,21 @@
-var FormData = require("form-data");
-var fetch = require("node-fetch");
+const FormData = require("form-data");
+const fetch = require("node-fetch");
 const mql = require("@microlink/mql");
 require("dotenv").config();
 
 async function runScript() {
   console.log("Starting slate importer");
-  let bookId = Math.floor(Math.random() * 1000);
-  let gbData = await fetch("https://gutendex.com/books/" + bookId).then(
+  const bookId = Math.floor(Math.random() * 1000);
+  const gbData = await fetch("https://gutendex.com/books/" + bookId).then(
     (response) => {
       return response.json();
     }
   );
 
+  //directory structure for project gutenberg mirror websites
+  //https://[mirrorUrl].com/1/2/3/1234-h/1234-h.htm
+
+  //splits the id to create the initial /1/2/3/ folder structure
   let numbers = gbData.id.toString().split("");
   let idArray = numbers.map(Number);
   idArray.pop();
@@ -21,9 +25,7 @@ async function runScript() {
     dir += "/" + idArray[id];
   }
 
-  //directory structure for project gutenberg mirror websites
-  //https://[mirrorUrl].com/1/2/3/123/123-h/123-h.htm
-  let mirrorUrl =
+  const mirrorUrl =
     "http://gutenberg.readingroo.ms" +
     dir +
     "/" +
@@ -41,6 +43,7 @@ async function runScript() {
 
   if (data.title == "404 Not Found") {
     console.log("There was an error retriving the PDF");
+    runScript();
     return;
   } else {
     console.log("Adding eBook: ", data.title);
@@ -65,11 +68,10 @@ async function runScript() {
     const json = await response.json();
     // NOTE: the URL to your asset will be available in the JSON response.
 
-    const slate = json;
-    slate.slate.data.objects[0].name = data.title;
-    slate.slate.data.objects[0].body = data.description;
-    slate.slate.data.objects[0].source =
-      "https://www.gutenberg.org/ebooks/" + bookId;
+    let updateData = json.slate.data.objects[0];
+    updateData.name = data.title;
+    updateData.body = data.description;
+    updateData.source = "https://www.gutenberg.org/ebooks/" + bookId;
 
     const responseData = await fetch("https://slate.host/api/v1/update-slate", {
       method: "POST",
@@ -78,7 +80,7 @@ async function runScript() {
         // NOTE: your API key
         Authorization: "Basic " + process.env.API_KEY,
       },
-      body: JSON.stringify({ data: slate }),
+      body: JSON.stringify({ data: updateData }),
     });
     const jsonData = await responseData.json();
     console.log("Done!");
