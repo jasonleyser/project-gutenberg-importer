@@ -1,5 +1,5 @@
 {
-  "name": "Project Gutenberg Slate Importer",
+  "name": "project-gutenberg-slate-importer",
   "version": "1.0.0",
   "description": "",
   "main": "import.js",
