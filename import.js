@@ -68,7 +68,8 @@ async function runScript() {
     const json = await response.json();
     // NOTE: the URL to your asset will be available in the JSON response.
 
-    let updateData = json.slate.data.objects[0];
+    let updateData = json.data.slate.data.objects[0];
+    console.log("data: ", updateData);
     updateData.name = data.title;
     updateData.body = data.description;
     updateData.source = "https://www.gutenberg.org/ebooks/" + bookId;
