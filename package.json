@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "import.js",
+  "scripts": {
+    "start": "node import.js",
+    "install": "npm install"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
