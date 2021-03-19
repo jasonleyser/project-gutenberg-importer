@@ -13,7 +13,6 @@ For example, eBook `#12345` is stored under `1/2/3/4/12345-h/12345-h.htm`
 4. The book's title, description, author and original source is updated on Slate
 
 ## Setting up the Cronjob
-I used [render.com](https://www.render.com/) to host the cron job. 
 
 1. Fork or clone this repo 
 2. Create a new Cron Job on [render.com](https://www.render.com/), and deploy this repo
