@@ -2,13 +2,11 @@
   "name": "project-gutenberg-slate-importer",
   "version": "1.0.0",
   "description": "",
-  "main": "import.js",
   "scripts": {
     "start": "node import.js",
-    "install": "npm install"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@microlink/mql": "^0.8.2",
     "dotenv": "^8.2.0",
