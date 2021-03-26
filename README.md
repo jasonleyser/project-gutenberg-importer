@@ -33,7 +33,7 @@ For example:<br>
 
 ## Using locally
 1. Fork or clone this repo 
-2. Create a `.env` file in the new project folder. <br />
+2. Create a `.env` file in the new project folder.
 `API_KEY=YOUR_SLATE_API_KEY` <br />
 `SLATE_ID=YOUR_SLATE_ID`
 3. In Terminal, navigate to the project folder and run <br />
