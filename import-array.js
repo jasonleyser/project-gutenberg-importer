@@ -4,7 +4,7 @@ const mql = require("@microlink/mql");
 require("dotenv").config();
 const bookData = require("./books2.json");
 
-async function runScript(id) {
+runScript = async (id) => {
   console.log("Starting slate importer");
   const bookId = id;
   const gbData = await fetch("https://gutendex.com/books/" + bookId).then(
@@ -86,24 +86,14 @@ async function runScript(id) {
     });
     const jsonData = await responseData.json();
     */
-    console.log("Done!");
     return;
   }
-}
+};
 
 async function getStarted() {
-  /*
-  let array = ["123", "456", "789"];
-
-  for (const item of array) {
-    console.log(item);
-    await runScript(item);
-  }
-  */
-  //console.log(bookData.id);
   for (const item of bookData) {
-    console.log(item.id);
     await runScript(item.id);
+    console.log("next");
   }
 }
 

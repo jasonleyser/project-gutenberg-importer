@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 const mql = require("@microlink/mql");
 require("dotenv").config();
 
-async function runScript() {
+runScript = async () => {
   console.log("Starting slate importer");
   const bookId = Math.floor(Math.random() * 1000);
   const gbData = await fetch("https://gutendex.com/books/" + bookId).then(
@@ -18,6 +18,7 @@ async function runScript() {
   //splits the id to create the initial /1/2/3/ folder structure
   let numbers = gbData.id.toString().split("");
   let idArray = numbers.map(Number);
+  //directory structure doesn't use the final number, use pop to remove
   idArray.pop();
 
   let dir = "";
@@ -86,6 +87,6 @@ async function runScript() {
     const jsonData = await responseData.json();
     console.log("Done!");
   }
-}
+};
 
 runScript();
