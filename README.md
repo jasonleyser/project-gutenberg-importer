@@ -26,4 +26,8 @@ For example:<br>
 `*/5 * * * *` will run every 5 minutes<br />
 `0 0 8 1/1 * ? *` will run once a day at 8:00am
 
+5. Create two ENV variables called:
+`API_KEY`
+`SLATE_ID`
+
 
