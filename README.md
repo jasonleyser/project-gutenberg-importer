@@ -29,5 +29,6 @@ For example:<br>
 5. Create two ENV variables called:
 `API_KEY`
 `SLATE_ID`
+Go to [slate.host](https://www.slate.host/) to create/retrieve your API key and Slate ID.
 
 
